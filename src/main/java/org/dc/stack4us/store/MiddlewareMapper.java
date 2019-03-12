@@ -1,7 +1,6 @@
 package org.dc.stack4us.store;
 
 import java.util.List;
-import jdk.nashorn.internal.objects.annotations.Setter;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -21,7 +20,8 @@ public interface MiddlewareMapper {
   @Insert("INSERT INTO middleware (name, github_url, star_num) VALUES (#{name}, #{githubUrl}, #{starNum})")
   int create(Middleware middleware);
 
-  @Update("UPDATE middleware SET (name, github_url, star_num) VALUES (${name}, #{githubUrl}, #{starNum})")
+  @Update("UPDATE middleware SET (name, github_url, star_num) VALUES (#{name}, #{githubUrl}, #{starNum})")
+  int update(Middleware middleware);
 
   @Select("SELECT id, name, github_url, star_num FROM middleware")
   List<Middleware> list();

@@ -1,6 +1,7 @@
 package org.dc.stack4us.controller;
 
 import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 import org.dc.stack4us.domain.Middleware;
 import org.dc.stack4us.service.MiddlewareService;
 import org.slf4j.Logger;
@@ -14,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@Slf4j
 @RequestMapping("/middleware")
 public class MiddlewareController {
-  private Logger log = LoggerFactory.getLogger(this.getClass());
 
   private MiddlewareService middlewareService;
 
