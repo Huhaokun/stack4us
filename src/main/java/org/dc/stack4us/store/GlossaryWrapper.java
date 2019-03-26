@@ -9,7 +9,6 @@ import org.apache.ibatis.annotations.Update;
 import org.dc.stack4us.domain.Glossary;
 import org.springframework.stereotype.Component;
 
-@Mapper
 @Component
 public interface GlossaryWrapper {
   @Select("SELECT id, name, desc, create_time, update_time FROM glossary where id = #{id}")

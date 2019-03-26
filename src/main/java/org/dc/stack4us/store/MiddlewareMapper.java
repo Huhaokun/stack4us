@@ -8,7 +8,6 @@ import org.apache.ibatis.annotations.Update;
 import org.dc.stack4us.domain.Middleware;
 import org.springframework.stereotype.Component;
 
-@Mapper
 @Component
 public interface MiddlewareMapper {
   @Select("SELECT id, name, github_url, star_num FROM middleware where id = #{id}")
