@@ -5,7 +5,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import javax.annotation.PostConstruct;
-import org.dc.stack4us.service.MiddlewareService;
+import org.dc.stack4us.service.StackService;
 import org.kohsuke.github.GitHub;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,12 +15,12 @@ public class SyncGithubTask {
 
   private ScheduledExecutorService scheduledExecutorService = new ScheduledThreadPoolExecutor(5);
 
-  private MiddlewareService middlewareService;
+  private StackService stackService;
   private GitHub gitHub;
 
   @Autowired
-  public SyncGithubTask(MiddlewareService middlewareService) {
-    this.middlewareService = middlewareService;
+  public SyncGithubTask(StackService stackService) {
+    this.stackService = stackService;
   }
 
   @PostConstruct
@@ -34,11 +34,11 @@ public class SyncGithubTask {
 
     // Step 2 update info periodically
     scheduledExecutorService.scheduleAtFixedRate(() -> {
-      this.middlewareService.list().forEach(m -> {
+      this.stackService.list().forEach(m -> {
         try {
           int star = gitHub.getRepository(m.getGithubUrl()).getStargazersCount();
           m.setStarNum(star);
-          middlewareService.update(m);
+          stackService.update(m);
         } catch (IOException e) {
           e.printStackTrace();
         }

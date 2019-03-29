@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class Middleware {
+public class Stack {
   private Long id;
   private String name;
   private String githubUrl;
